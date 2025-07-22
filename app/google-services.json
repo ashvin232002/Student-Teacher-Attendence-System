@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "726727154063",
+    "project_id": "trim-icon-453609-a0",
+    "storage_bucket": "trim-icon-453609-a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726727154063:android:567aa533bc83d57aed13fa",
+        "android_client_info": {
+          "package_name": "com.example.student_teacher_attendence_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726727154063-3gictukte2sil6ghch8593jv6s04hg93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Mi9mmsWzp_qlIkk2_tQjoWRs3MRDgCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726727154063-3gictukte2sil6ghch8593jv6s04hg93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726727154063:android:cec870b13eebd9aaed13fa",
+        "android_client_info": {
+          "package_name": "firestore_android.practice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726727154063-3gictukte2sil6ghch8593jv6s04hg93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Mi9mmsWzp_qlIkk2_tQjoWRs3MRDgCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726727154063-3gictukte2sil6ghch8593jv6s04hg93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
