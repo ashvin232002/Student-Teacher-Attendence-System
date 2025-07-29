@@ -5,6 +5,5 @@ import com.google.firebase.firestore.DocumentReference
 data class ClassModel(
     val id: String = "",
     val name: String = "",
-    val total_strength: Int = 0,
-    val teacher_ref: DocumentReference? = null
+    val total_strength: Int = 0
 )

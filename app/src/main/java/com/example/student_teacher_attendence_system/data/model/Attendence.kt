@@ -6,8 +6,8 @@ import java.util.Date
 
 data class AttendanceModel(
     val id: String = "",
-    val class_ref: DocumentReference? = null,
-    val teacher_ref: DocumentReference? = null,
-    val day: Date = Date(),
+    val class_ref: String= "",
+    val teacher_ref: String = "",
+    val day: Long = 0,
     val presence_count: Int = 0
 )

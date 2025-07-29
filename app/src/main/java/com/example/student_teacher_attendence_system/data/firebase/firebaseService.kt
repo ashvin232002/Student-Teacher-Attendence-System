@@ -8,7 +8,8 @@ object FirebaseService {
         FirebaseFirestore.getInstance()
     }
 
-    val teachersCollection get() = firestore.collection("teachers")
-    val classesCollection get() = firestore.collection("classes")
+    val teachersCollection get() = firestore.collection("teacher")
+    val classesCollection get() = firestore.collection("class")
     val attendanceCollection get() = firestore.collection("attendance")
+
 }
