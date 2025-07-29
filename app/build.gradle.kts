@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
+
+    implementation(libs.androidx.navigation.compose)
 
     // Firebase BOM (manages all Firebase versions)
     implementation(platform(libs.firebase.bom))

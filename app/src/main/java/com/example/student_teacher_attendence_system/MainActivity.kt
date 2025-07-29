@@ -1,47 +1,30 @@
 package com.example.student_teacher_attendence_system
 
+import android.os.Build
 import android.os.Bundle
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.annotation.RequiresApi
+
 import com.example.student_teacher_attendence_system.ui.theme.StudentTeacherAttendenceSystemTheme
+import com.example.student_teacher_attendence_system.viewModel.AdminViewModel
 
 class MainActivity : ComponentActivity() {
+    private val adminViewModel = AdminViewModel()
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             StudentTeacherAttendenceSystemTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                NavigationAdminPage( viewModel = adminViewModel )
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StudentTeacherAttendenceSystemTheme {
-        Greeting("Android")
-    }
-}
+
