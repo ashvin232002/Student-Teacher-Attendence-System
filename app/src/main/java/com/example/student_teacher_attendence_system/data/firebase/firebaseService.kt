@@ -2,9 +2,12 @@ package com.example.student_teacher_attendence_system.data.firebase
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object FirebaseService {
-    val firestore: FirebaseFirestore by lazy {
+@Singleton
+class FirebaseService @Inject constructor() {
+    private val firestore: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
 

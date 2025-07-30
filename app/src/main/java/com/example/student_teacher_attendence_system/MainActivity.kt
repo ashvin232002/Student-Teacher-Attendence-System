@@ -10,9 +10,10 @@ import androidx.annotation.RequiresApi
 
 import com.example.student_teacher_attendence_system.ui.theme.StudentTeacherAttendenceSystemTheme
 import com.example.student_teacher_attendence_system.viewModel.AdminViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val adminViewModel = AdminViewModel()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StudentTeacherAttendenceSystemTheme {
-                NavigationAdminPage( viewModel = adminViewModel )
+                NavigationAdminPage( )
             }
         }
     }

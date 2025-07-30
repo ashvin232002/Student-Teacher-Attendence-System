@@ -13,14 +13,20 @@ compose-navigation = "2.7.7"
 androidx-core = "1.12.0"
 runtimeLivedata = "1.8.3"
 firebaseBom = "33.6.0"
-hilt = "2.50"
-hiltCompose = "1.1.0"
 kapt = "2.0.21"
 lifecycle-viewmodel-compose = "2.7.0"
 navigation = "2.7.5"
 googleServices = "4.4.0"
+hilt = "2.56.1"
+hiltCompiler = "2.56.1"
+hiltNavCompose = "1.2.0"
+ksp-version="2.1.21-2.0.1"
 
 [libraries]
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltCompiler" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavCompose" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -45,9 +51,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompose" }
+
 androidx-navigation-compose =  { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 [plugins]
@@ -58,3 +62,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+

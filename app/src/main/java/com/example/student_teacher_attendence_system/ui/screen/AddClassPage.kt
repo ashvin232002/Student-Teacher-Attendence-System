@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.student_teacher_attendence_system.data.model.ClassModel
 import com.example.student_teacher_attendence_system.viewModel.ClassViewModel
@@ -40,7 +41,7 @@ fun AddClassPage() {
     var totalStrength by rememberSaveable { mutableStateOf("") }
     val context = LocalContext.current
 
-    val classViewModel: ClassViewModel = viewModel()
+    val classViewModel: ClassViewModel = hiltViewModel()
 
     Scaffold(
         topBar = {

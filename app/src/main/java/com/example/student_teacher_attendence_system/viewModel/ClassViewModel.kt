@@ -5,19 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.student_teacher_attendence_system.data.repository.ClassRepository
 import com.example.student_teacher_attendence_system.data.model.ClassModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ClassViewModel: ViewModel() {
+@HiltViewModel
+class ClassViewModel @Inject constructor(
+    private val classRepository: ClassRepository
+) : ViewModel() {
 
-    private val classRepository = ClassRepository()
 
     private val _classes = MutableStateFlow<List<ClassModel>>(emptyList())
     val classes = _classes.asStateFlow()
 
     init {
-
         startListeningToClasses()
     }
 
@@ -31,11 +34,6 @@ class ClassViewModel: ViewModel() {
                 Log.e("ClassViewModel", "Error listening to classes", exception)
             }
         )
-    }
-
-    fun getAllClasses() {
-
-        Log.d("ClassViewModel", "getAllClasses called - using real-time listeners")
     }
 
     fun createClass(obj: ClassModel) {

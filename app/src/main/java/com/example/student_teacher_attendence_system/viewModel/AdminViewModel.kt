@@ -9,17 +9,23 @@ import com.example.student_teacher_attendence_system.data.repository.AttendanceR
 import com.example.student_teacher_attendence_system.data.repository.ClassRepository
 import com.example.student_teacher_attendence_system.data.model.AttendanceModel
 import com.example.student_teacher_attendence_system.data.model.ClassModel
+import com.example.student_teacher_attendence_system.data.utils.DateUtils
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-
-class AdminViewModel : ViewModel() {
-    private val attendanceRepository = AttendanceRepository()
-    private val classRepository = ClassRepository()
+@HiltViewModel
+class AdminViewModel @Inject constructor(
+    private val attendanceRepository : AttendanceRepository,
+    private val classRepository: ClassRepository,
+    private val dateUtils: DateUtils
+): ViewModel() {
 
     private val _attendance = MutableStateFlow<List<AttendanceModel>>(emptyList())
     private val _classes = MutableStateFlow<List<ClassModel>>(emptyList())
@@ -29,28 +35,19 @@ class AdminViewModel : ViewModel() {
     val classes = _classes.asStateFlow()
     val attendanceRecords = _attendanceRecords.asStateFlow()
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun convertDateToEpoch(dateStr: String): Long {
-
-        val formatter = DateTimeFormatter.ofPattern("d MMMM,yyyy", java.util.Locale.ENGLISH)
-
-        val localDate = LocalDate.parse(dateStr, formatter)
-
-        return localDate.atStartOfDay(ZoneOffset.UTC).toEpochSecond()
-    }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun listenToClassesAndUpdateAttendance(day: String) {
 
-        val parsedSelected = convertDateToEpoch(day)
+        val parsedSelected = dateUtils.convertDateToEpoch(day)
         Log.d("parsed selected ",parsedSelected.toString())
         classRepository.listenToClasses(
             onChange = { updatedClasses ->
                 _classes.value = updatedClasses
 
                 viewModelScope.launch {
-                    val records = attendanceRepository.utilityAttendanceToClass(updatedClasses, parsedSelected)
+                    val records = attendanceRepository.getAttendanceWithClassInfo(updatedClasses, parsedSelected)
                     _attendanceRecords.value = records
                 }
             },
@@ -63,8 +60,8 @@ class AdminViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun listenToAttendance(day: String) {
 
-        val parsedSelected = convertDateToEpoch(day)
 
+        val parsedSelected = dateUtils.convertDateToEpoch(day)
 
         attendanceRepository.listenToAttendance(
             parsedSelected,
@@ -72,7 +69,7 @@ class AdminViewModel : ViewModel() {
                 _attendance.value = updatedAttendance
 
                 viewModelScope.launch {
-                    val records = attendanceRepository.utilityAttendanceToClass(_classes.value, parsedSelected)
+                    val records = attendanceRepository.getAttendanceWithClassInfo(_classes.value, parsedSelected)
                     _attendanceRecords.value = records
                 }
             },

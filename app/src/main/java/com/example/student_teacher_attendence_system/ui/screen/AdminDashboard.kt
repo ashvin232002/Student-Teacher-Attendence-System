@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.student_teacher_attendence_system.viewModel.AdminViewModel
 import java.time.LocalDate
 import java.time.format.TextStyle
@@ -46,7 +47,9 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AdminDashboard(viewModel: AdminViewModel) {
+fun AdminDashboard(
+    viewModel: AdminViewModel = hiltViewModel()
+) {
     val attendance by viewModel.attendance.collectAsState()
     val classes by viewModel.classes.collectAsState()
     val attendanceRecords by viewModel.attendanceRecords.collectAsState()
