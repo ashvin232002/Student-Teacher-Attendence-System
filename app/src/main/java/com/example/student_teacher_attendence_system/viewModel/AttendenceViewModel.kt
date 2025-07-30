@@ -1,0 +1,26 @@
+package com.example.student_teacher_attendence_system.viewModel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.student_teacher_attendence_system.data.model.AttendanceModel
+import com.example.student_teacher_attendence_system.data.repository.AttendenceRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class AttendenceViewModel @Inject constructor(
+    private val repository: AttendenceRepository
+): ViewModel(){
+
+    private val _attendence = MutableStateFlow<List<AttendanceModel>>(emptyList())
+    val attendence = _attendence.asStateFlow()
+
+    fun addAttendence(attendence: AttendanceModel,className: String , teacherEmail: String){
+        viewModelScope.launch {
+            repository.addAttendance(attendence, className , teacherEmail )
+        }
+    }
+}
