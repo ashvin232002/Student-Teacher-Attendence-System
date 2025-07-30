@@ -11,4 +11,5 @@ object FirebaseService {
     val teachersCollection get() = firestore.collection("teacher")
     val classesCollection get() = firestore.collection("class")
     val attendanceCollection get() = firestore.collection("attendance")
+
 }

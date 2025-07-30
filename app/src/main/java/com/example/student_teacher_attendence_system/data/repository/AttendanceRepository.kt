@@ -12,6 +12,10 @@ import kotlinx.coroutines.withContext
 
 class AttendanceRepository {
 
+    private val db = FirebaseService.attendanceCollection
+    private val repository = TeacherRepository();
+
+
     suspend fun getAttendance(date: Int): List<AttendanceModel> {
 
         return withContext(Dispatchers.IO) {
@@ -60,4 +64,32 @@ class AttendanceRepository {
 
         return attendanceRecords
     }
+
+    suspend fun addAttendance(
+        attendance: AttendanceModel,
+        className: String,
+        teacherEmail:String
+    ) {
+        val classes = repository.getAllClasses()
+        val teacher =  repository.getTeacher()
+
+        val matchedClass = classes.find { it.name == className }
+        val matchedTeacher =  teacher.find { it.email == teacherEmail}
+
+        if (matchedClass != null) {
+            val attendanceWithClassRef =
+                matchedTeacher?.let { attendance.copy(class_ref = matchedClass.id, teacher_ref = it.id) }
+            var id:String = ""
+            if (attendanceWithClassRef != null) {
+                FirebaseService.attendanceCollection.add(attendanceWithClassRef).addOnSuccessListener { docRef -> id = docRef.id
+                }.await()
+            }
+
+            FirebaseService.attendanceCollection.document(id).update("id",id)
+        } else {
+            throw IllegalArgumentException("No class found with name: $className")
+        }
+    }
+
+
 }
