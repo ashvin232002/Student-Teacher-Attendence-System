@@ -35,17 +35,4 @@ class AttendenceRepository {
             throw IllegalArgumentException("No class found with name: $className")
         }
     }
-
-
-//    suspend fun addAttendece(attendence:AttendanceModel){
-//        db.add(attendence).await()
-//    }
-//
-//    suspend fun updateAttendece(attendence: AttendanceModel){
-//        db.document(attendence.id).set(attendence).await()
-//    }
-//
-//    suspend fun deleteAttendece(attendenceId:String){
-//        db.document(attendenceId).delete().await()
-//    }
 }
