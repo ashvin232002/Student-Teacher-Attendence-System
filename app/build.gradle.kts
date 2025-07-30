@@ -65,6 +65,8 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
 
+    implementation(libs.androidx.navigation.compose)
+
     // Firebase BOM (manages all Firebase versions)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
